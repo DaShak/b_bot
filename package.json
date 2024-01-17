@@ -12,7 +12,8 @@
   "license": "ISC",
   "devDependencies": {
     "ts-node": "^10.2.1",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "@types/dotenv": "^8.2.0"
   },
   "dependencies": {
     "@0xsquid/sdk": "^1",
