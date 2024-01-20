@@ -30,3 +30,28 @@ export async function getPriceFromCMC() {
         return json;
     }
 }
+
+export async function getAssetMapFromCMC() {
+    let response = null;
+    try {
+        response = await axios.get(
+            'https://pro-api.coinmarketcap.com/v1/cryptocurrency/map',
+            {
+                headers: {
+                    'X-CMC_PRO_API_KEY': cmcAPIKey,
+                },
+            }
+        );
+    } catch(ex) {
+        response = null;
+        // error
+        console.log(ex);
+        throw ex;
+    }
+    if (response) {
+        // success
+        const json = response.data;
+        console.log('getAssetMapFromCMC response:', json);
+        return json;
+    }
+}
