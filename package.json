@@ -1,6 +1,6 @@
 {
   "name": "b_bot",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "B bot",
   "main": "index.ts",
   "scripts": {
