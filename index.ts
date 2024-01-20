@@ -2,7 +2,7 @@ import { Squid } from "@0xsquid/sdk";
 import { TokenData, ChainData } from '@0xsquid/sdk/dist/types';
 import dotenv from 'dotenv';
 import { ethers } from 'ethers';
-import { getPriceFromCMC } from './utils/CoinMarketCap';
+import { getAssetMapFromCMC, getPriceFromCMC } from './utils/CoinMarketCap';
 
 // Load environment variables from .env file
 dotenv.config();
@@ -71,7 +71,10 @@ if (!integratorId || !baseUrl) {
     console.log("the `route` response:", route);
 
     // get price of ASTRO from CoinMarketCap
-    getPriceFromCMC();
+    console.log("Trying getAssetMapFromCMC('BTC,ASTRO')");
+    const cmcAssetMap = await getAssetMapFromCMC('BTC,ASTRO');
+    console.log("cmcAssetMap:", cmcAssetMap);
+    // getPriceFromCMC();
 
   } else {
     console.log("fromToken or toToken not found");
