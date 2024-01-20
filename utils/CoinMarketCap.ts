@@ -6,18 +6,28 @@ import dotenv from 'dotenv';
 dotenv.config();
 const cmcAPIKey = process.env.CMC_API_KEY;
 
-// https://coinmarketcap.com/api/documentation/v1/#operation/getV2CryptocurrencyQuotesLatest
-export async function getPriceFromCMC() {
+/**
+ * Get asset price from CoinMarketCap by ID
+ * API endpoint doc:  https://coinmarketcap.com/api/documentation/v1/#operation/getV2CryptocurrencyQuotesLatest
+ * @param symbol this is actually ID
+ * @param convert_to 
+ * @returns 
+ */
+export async function getPriceFromCMC(symbol?: string, convert_to?: string) {
     let response = null;
     try {
-        response = await axios.get(
-            'https://pro-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest?id=1',
-            {
-                headers: {
-                    'X-CMC_PRO_API_KEY': cmcAPIKey,
-                },
+        let url = 'https://pro-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest';
+        if (symbol) {
+            url += `?id=${symbol}`;
+            if (convert_to) {
+                url += `&convert=${convert_to}`;
             }
-        );
+        }
+        response = await axios.get(url, {
+            headers: {
+                'X-CMC_PRO_API_KEY': cmcAPIKey,
+            },
+        });
     } catch(ex) {
         response = null;
         // error
@@ -27,7 +37,7 @@ export async function getPriceFromCMC() {
     if (response) {
         // success
         const json = response.data;
-        console.log('getPriceFromCMC response:', json);
+        // console.log('getPriceFromCMC response:', json);
         return json;
     }
 }
@@ -59,7 +69,7 @@ export async function getAssetMapFromCMC(symbols?: string) {
     if (response) {
         // success
         const json = response.data;
-        console.log('getAssetMapFromCMC response:', json);
+        // console.log('getAssetMapFromCMC response:', json);
         return json;
     }
 }

@@ -70,11 +70,21 @@ if (!integratorId || !baseUrl) {
 
     console.log("the `route` response:", route);
 
-    // get price of ASTRO from CoinMarketCap
-    console.log("Trying getAssetMapFromCMC('BTC,ASTRO')");
-    const cmcAssetMap = await getAssetMapFromCMC('BTC,ASTRO');
-    console.log("cmcAssetMap:", cmcAssetMap);
-    // getPriceFromCMC();
+    // get Asset Map from CoinMarketCap
+    // console.log("Trying getAssetMapFromCMC('BTC,ASTRO')");
+    // const cmcAssetMap = await getAssetMapFromCMC('BTC,ASTRO');
+    // console.log("cmcAssetMap:", cmcAssetMap);
+
+    // get price of BTC (id=1) in USD from CoinMarketCap
+    const testPriceFromCMC = await getPriceFromCMC('1', 'USD');
+    // console.log("testPriceFromCMC:", testPriceFromCMC);
+    // console.log("testPriceFromCMC.data:", testPriceFromCMC.data);
+    console.log("testPriceFromCMC.data.BTC[0].quote:", testPriceFromCMC.data['1'].quote.USD);
+
+    // get price of ASTRO (id=23374) in USD from CoinMarketCap
+    const astroPriceFromCMC = await getPriceFromCMC('23374');
+    // console.log("astroPriceFromCMC.data:", astroPriceFromCMC.data);
+    console.log("astroPriceFromCMC.data.BTC[0].quote:", astroPriceFromCMC.data['23374'].quote);
 
   } else {
     console.log("fromToken or toToken not found");
