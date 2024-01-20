@@ -2,6 +2,9 @@ import { ethers } from 'ethers';
 import { getAssetMapFromCMC, getPriceFromCMC } from './utils/CoinMarketCap';
 import { SquidRouter } from './utils/SquidRouter';
 
+/**
+ * Experiment with SquidRouter SDK & API
+ */
 async function experimentSquidRouter() {
   // Instantiate SquidRouter class
   const squid = new SquidRouter();
@@ -51,6 +54,9 @@ async function experimentSquidRouter() {
   }
 }
 
+/**
+ * Experiment with CoinMarketCap API
+ */
 async function experimentCoinMarketCap() {
   // get Asset Map from CoinMarketCap
   // console.log("Trying getAssetMapFromCMC('BTC,ASTRO')");
