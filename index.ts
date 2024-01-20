@@ -2,6 +2,7 @@ import { Squid } from "@0xsquid/sdk";
 import { TokenData, ChainData } from '@0xsquid/sdk/dist/types';
 import dotenv from 'dotenv';
 import { ethers } from 'ethers';
+import { getPriceFromCMC } from './utils/CoinMarketCap';
 
 // Load environment variables from .env file
 dotenv.config();
@@ -16,7 +17,7 @@ if (!integratorId || !baseUrl) {
 }
 
 (async () => {
-  // instantiate the SDK
+  // instantiate the SquidRouter SDK
   const squid = new Squid({
     // baseUrl: "https://testnet.api.squidrouter.com",
     baseUrl: baseUrl,
@@ -68,6 +69,9 @@ if (!integratorId || !baseUrl) {
     const { route, requestId, integratorId  } = await squid.getRoute(params);
 
     console.log("the `route` response:", route);
+
+    // get price of ASTRO from CoinMarketCap
+    getPriceFromCMC();
 
   } else {
     console.log("fromToken or toToken not found");
