@@ -75,10 +75,15 @@ async function experimentCoinMarketCap() {
   console.log("astroPriceFromCMC.data.BTC[0].quote:", astroPriceFromCMC.data['23374'].quote);
 }
 
+/**
+ * Main
+ */
 (async () => {
 
+  // SquidRouter experiment
   await experimentSquidRouter();
 
+  // CoinMarketCap experiment
   await experimentCoinMarketCap();
 
 })();
